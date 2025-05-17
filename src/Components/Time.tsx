@@ -14,14 +14,14 @@ const Type = styled.div`
 const TypeTop = styled.div`
   margin-bottom: 0.5rem;
 `
-const Radio = styled.input`
+const Radio = styled.input<{url:string}>`
   margin-right: 8px;
   width: 1rem;
   height: 1rem;
   border: 1px solid white;
   appearance: none;
   &:checked {
-    background-image:url('/images/check.png');
+    background-image:url(${props=>props.url});
     background-size: cover;
     background-position: center;
   }
@@ -50,6 +50,8 @@ function Time() {
   const [type, setType] = useState('minute')
   const [minutes, setMinutes] = useState('') 
   const [hours, setHours] = useState('') 
+  let url = process.env.PUBLIC_URL + '/images/check.png'
+
   function changeType(event:React.FormEvent<HTMLInputElement>) {
     setType(event.currentTarget.id)
   }
@@ -93,6 +95,7 @@ function Time() {
             type="radio" name="type" id="minute" 
             checked={type==='minute'? true : false}
             onChange={changeType} 
+            url={url}
           />
           <Label htmlFor="minute">Minutes → Hours</Label>
         </TypeTop>
@@ -119,11 +122,10 @@ function Time() {
       <Type>
         <TypeTop>
           <Radio
-            type="radio" 
-            name="type" 
-            id="hour" 
+            type="radio" name="type" id="hour" 
             onChange={changeType} 
             checked={type==='minute'? false : true}
+            url={url}
           />
           <Label htmlFor="hour">Hours → Minutes</Label>
         </TypeTop>
