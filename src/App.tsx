@@ -1,6 +1,7 @@
 import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components'
 import Home from './Components/Home';
+import { Helmet } from 'react-helmet';
 
 const Container = styled.div`
   width: 100vw;
@@ -16,13 +17,17 @@ function App() {
   // const isDesktop = useMediaQuery({ minWidth: 1024 });
   
     return (
-      <Container>
-        <Home/>
-        {/* {isMobile&&<Home/>} */}
-        {/* {isTablet&&<Home/>} */}
-        {/* {isDesktop&&<Home/>} */}
-      </Container>
-      
+      <>
+        <Helmet>
+          <title>단위 변환기📏</title>
+        </Helmet>
+        <Container>
+          <Home/>
+          {/* {isMobile&&<Home/>} */}
+          {/* {isTablet&&<Home/>} */}
+          {/* {isDesktop&&<Home/>} */}
+        </Container>
+      </>
     )
 }
 
